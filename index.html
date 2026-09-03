@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congratulations Zainab! 🎉</title>
+    <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css for entrance animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Canvas Confetti for explosive celebration -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -62,79 +66,86 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 relative">
 
-    <audio id="bgMusic" loop>
+    <!-- Background Music (Soft Success Audio) -->
+    <audio id="bgMusic" loop preload="auto">
         <source src="https://assets.mixkit.co/music/preview/mixkit-a-very-happy-time-464.mp3" type="audio/mp3">
     </audio>
 
+    <!-- Floating Emoji Container -->
     <div id="emojiContainer"></div>
 
+    <!-- MAIN CONTAINER -->
     <main class="w-full max-w-xl z-20">
 
+        <!-- WINDOW 1: NAME INPUT -->
         <section id="window1" class="glass-card rounded-3xl p-8 md:p-10 text-center animate__animated animate__fadeIn">
             <div class="inline-block p-4 rounded-full bg-purple-500/10 mb-6">
                 <i class="fa-solid fa-sparkles text-4xl text-purple-400"></i>
             </div>
-            <h1 class="heading-font text-3xl md:text-4xl font-extrabold mb-3">Welcome Superstar! ✨</h1>
-            <p class="text-gray-300 text-sm md:text-base mb-8">Pehle apna pyara sa naam yahan enter karo:</p>
+            <h1 class="heading-font text-3xl md:text-4xl font-extrabold mb-3">Welcome Champ! ✨</h1>
+            <p class="text-gray-300 text-sm md:text-base mb-8">Drop your name below to unlock the main character energy 👇</p>
 
             <form id="nameForm" onsubmit="handleNameSubmit(event)" class="space-y-4">
                 <div>
                     <input type="text" id="nameInput" placeholder="Enter your name..." required
                         class="w-full px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 text-center text-lg font-medium transition">
-                    <p id="errorMessage" class="text-red-400 text-xs mt-2 hidden">Sahi naam likho na (Hint: Zainab) 😉</p>
+                    <p id="errorMessage" class="text-red-400 text-xs mt-2 hidden">Sahi naam likho na (Hint: tumhara apna naam) 😉</p>
                 </div>
                 <button type="submit" class="w-full py-4 rounded-2xl gradient-btn font-bold text-lg tracking-wide shadow-lg">
-                    Continue <i class="fa-solid fa-arrow-right ml-2"></i>
+                    Let's Go Bestie <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </form>
         </section>
 
+        <!-- WINDOW 2: WELCOME & CELEBRATION -->
         <section id="window2" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden animate__animated">
             <div class="inline-block px-4 py-1.5 rounded-full bg-pink-500/20 text-pink-300 font-semibold text-xs tracking-wider uppercase mb-4 border border-pink-500/30">
-                A 9th Board Masterpiece 🏆
+                Absolute Academic Weapon 🏆
             </div>
-            <h1 class="heading-font text-4xl md:text-5xl font-extrabold mb-4 glow-text bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-                CONGRATULATIONS ZAINAB!
+            <h1 class="heading-font text-3xl md:text-5xl font-extrabold mb-4 glow-text bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+                CONGRATULATIONS ZAINAB! 🎉
             </h1>
             <div class="text-6xl font-black text-amber-300 my-4 tracking-tight">
-                90%+ <span class="text-xl text-white font-normal">Marks! 🔥</span>
+                90%+ <span class="text-xl text-white font-normal">NO CAP! 🔥</span>
             </div>
             <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-8">
-                You totally crushed it! Board exams main itni zabardast performance Dena koi aam baat nahi ha. You made the whole family super proud today! 🎉✨
+                You literally SLAYED the 9th board exams! Lowkey made the whole exam look so easy. Total flex, super proud of you! ✨💅
             </p>
             <button onclick="goToWindow3()" class="w-full py-4 rounded-2xl gradient-btn font-bold text-lg shadow-lg">
-                See What's Next 🚀
+                Future Loading... 🚀
             </button>
         </section>
 
+        <!-- WINDOW 3: MOTIVATION & DUAS -->
         <section id="window3" class="glass-card rounded-3xl p-8 md:p-10 text-center hidden animate__animated">
             <div class="text-5xl mb-4">🌟</div>
-            <h2 class="heading-font text-3xl font-extrabold mb-4 text-purple-300">The Future Belongs To You</h2>
+            <h2 class="heading-font text-3xl font-extrabold mb-4 text-purple-300">Big Era Ahead</h2>
             
             <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
-                Ye toh bas abhi shuruaat hai. Jis mehnath aur dedication se aap ne 9th class main top kiya hai, InshaAllah aagay life main har goal, har dream easily achieve hoga. 
+                This is just the origin story! With this mindset, you're gonna own every single goal in the future. Keep rising, stay unstoppable! 👑
             </p>
 
+            <!-- Duas Box -->
             <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-8 text-left space-y-3">
                 <div class="flex items-start gap-3">
                     <i class="fa-solid fa-heart text-pink-400 mt-1"></i>
-                    <p class="text-xs md:text-sm text-gray-200">Allah aap ko hamesha kamyab kary aur har mor par aasanian ata farmaye.</p>
+                    <p class="text-xs md:text-sm text-gray-200">May Allah bless you with continuous success, clarity, and endless happiness in life. Ameen! ✨</p>
                 </div>
                 <div class="flex items-start gap-3">
                     <i class="fa-solid fa-star text-amber-400 mt-1"></i>
-                    <p class="text-xs md:text-sm text-gray-200">Aap jo bhi future career choose karo, us main top-notch performance do!</p>
+                    <p class="text-xs md:text-sm text-gray-200">May whatever career or path you pick turn into pure gold. Keep shining bright!</p>
                 </div>
             </div>
 
             <button onclick="triggerExplosion()" class="w-full py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 font-bold text-lg transition">
-                Celebrate Again 💥
+                One More Confetti Explosion 💥
             </button>
         </section>
 
     </main>
 
     <script>
-        // Continuously generate floating bombastic emojis in background
+        // Floating Emojis Rain
         function startEmojiRain() {
             const emojis = ['💥', '🎉', '👑', '✨', '🏆', '🔥', '💖'];
             setInterval(() => {
@@ -150,7 +161,7 @@
             }, 300);
         }
 
-        // Handle Window 1 Logic
+        // Window 1 Logic
         function handleNameSubmit(e) {
             e.preventDefault();
             const input = document.getElementById('nameInput').value.trim().toLowerCase();
@@ -159,9 +170,9 @@
             if (input.includes('zainab')) {
                 error.classList.add('hidden');
                 
-                // Play music
+                // Play Background Music
                 const audio = document.getElementById('bgMusic');
-                audio.play().catch(() => console.log('Audio autoplay prevented'));
+                audio.play().catch(err => console.log('Audio autoplay blocked:', err));
 
                 // Transition to Window 2
                 document.getElementById('window1').classList.add('animate__fadeOut');
@@ -171,7 +182,6 @@
                     w2.classList.remove('hidden');
                     w2.classList.add('animate__zoomIn');
                     
-                    // Trigger confetti burst & emoji rain
                     triggerExplosion();
                     startEmojiRain();
                 }, 500);
@@ -181,7 +191,7 @@
             }
         }
 
-        // Handle Window 2 to 3 Transition
+        // Window 2 to 3 Transition
         function goToWindow3() {
             document.getElementById('window2').classList.add('animate__fadeOut');
             setTimeout(() => {
@@ -193,7 +203,7 @@
             }, 500);
         }
 
-        // Bombastic Confetti Explosion
+        // Confetti Explosion
         function triggerExplosion() {
             confetti({
                 particleCount: 120,
