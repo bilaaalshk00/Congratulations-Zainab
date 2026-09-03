@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congratulations Zainab! 🎉</title>
-    <!-- Tailwind CSS for modern styling -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Animate.css for entrance animations -->
+    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <!-- Canvas Confetti for explosive celebration -->
+    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -66,9 +66,9 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 relative">
 
-    <!-- Background Music (Soft Success Audio) -->
+    <!-- Background Music Tag -->
     <audio id="bgMusic" loop preload="auto">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-a-very-happy-time-464.mp3" type="audio/mp3">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=happy-day-113985.mp3" type="audio/mp3">
     </audio>
 
     <!-- Floating Emoji Container -->
@@ -145,6 +145,37 @@
     </main>
 
     <script>
+        // Synthesizer Audio fallback if network audio blocks
+        function playCelebrationSound() {
+            try {
+                const audio = document.getElementById('bgMusic');
+                audio.volume = 0.6;
+                const promise = audio.play();
+                
+                if (promise !== undefined) {
+                    promise.catch(() => {
+                        // Web Audio API Synthesizer (Zero External Dependencies)
+                        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                        const notes = [261.63, 329.63, 392.00, 523.25, 659.25];
+                        let noteIdx = 0;
+                        setInterval(() => {
+                            const osc = ctx.createOscillator();
+                            const gain = ctx.createGain();
+                            osc.type = 'sine';
+                            osc.frequency.value = notes[noteIdx % notes.length];
+                            gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+                            osc.connect(gain);
+                            gain.connect(ctx.destination);
+                            osc.start();
+                            osc.stop(ctx.currentTime + 0.4);
+                            noteIdx++;
+                        }, 250);
+                    });
+                }
+            } catch(e) { console.log(e); }
+        }
+
         // Floating Emojis Rain
         function startEmojiRain() {
             const emojis = ['💥', '🎉', '👑', '✨', '🏆', '🔥', '💖'];
@@ -170,9 +201,8 @@
             if (input.includes('zainab')) {
                 error.classList.add('hidden');
                 
-                // Play Background Music
-                const audio = document.getElementById('bgMusic');
-                audio.play().catch(err => console.log('Audio autoplay blocked:', err));
+                // Play Music Guaranteed
+                playCelebrationSound();
 
                 // Transition to Window 2
                 document.getElementById('window1').classList.add('animate__fadeOut');
